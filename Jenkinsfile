@@ -8,7 +8,7 @@ pipeline {
    	 	accessKeyVariable: 'AWS_ACCESS_KEY_ID', 
         	secretKeyVariable: 'AWS_SECRET_ACCESS_KEY',
 		credentialsId: 'AWS_ACCOUNT'
-		]]) {
+			]]) {
         dir('infra'){
           sh 'terraform init'
         }
