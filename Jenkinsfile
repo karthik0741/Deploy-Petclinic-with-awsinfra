@@ -1,21 +1,15 @@
 pipeline {
+    agent any
 
-agent any
-tool name: 'terraform', type: 'terraform'
-
-stages {
-  stage ('terraform init') {
-	steps {
-
-	sh 'terraform init’
-
-	}
-
-	}
-  	steps {
-
-	sh ‘terraform plan’
-
-}
-}
+    stages 
+        stage('Terraform init') {
+            steps {
+                sh 'terraform init'
+            }
+        }
+	stage('Terraform plan') {
+            steps {
+                sh 'terraform plan'
+            }
+        }
 }
