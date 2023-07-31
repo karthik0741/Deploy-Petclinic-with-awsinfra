@@ -1,11 +1,14 @@
 pipeline {
   agent any
-  parameters {
-  credentials credentialType: 'com.cloudbees.jenkins.plugins.awscredentials.AWSCredentialsImpl', defaultValue: 'My AWS', name: 'AWS_ACCESS_KEY_ID', required: true
-}
   stages {
     stage ('init') {
       steps {
+        withCredentials([[
+          $class: 'AmazonWebServicesCredentialsBinding', 
+   			  accessKeyVariable: 'AWS_ACCESS_KEY_ID', 
+        	secretKeyVariable: 'AWS_SECRET_ACCESS_KEY',
+			    credentialsId: 'AWS_ACCOUNT'
+			]]) {
         dir('infra'){
           sh 'terraform init'
         }
