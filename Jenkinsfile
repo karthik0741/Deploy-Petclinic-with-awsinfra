@@ -1,12 +1,18 @@
 pipeline {
   agent any
   stages {
-    stage (“terraform init”) {
+    stage ('init') {
       steps {
-        sh (‘terraform init’)
+        dir('infra'){
+          sh 'terraform init'
+        }
       }
+    }
+    stage ('plan'){
       steps {
-        sh (‘terraform plan’)
+        dir('infra'){
+          sh 'terraform plan'
+        }
       }
     }
   }
