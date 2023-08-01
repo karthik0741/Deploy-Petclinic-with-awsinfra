@@ -10,7 +10,7 @@ pipeline {
     stage ('init') {
       when {
         branch 'new-branch'
-      steps {
+        steps {
         withCredentials([[
             $class: 'AmazonWebServicesCredentialsBinding', 
             accessKeyVariable: 'AWS_ACCESS_KEY_ID', 
@@ -28,7 +28,7 @@ pipeline {
     stage ('plan'){
       when {
         branch 'main'
-      steps {
+        steps {
         withCredentials([[
             $class: 'AmazonWebServicesCredentialsBinding', 
             accessKeyVariable: 'AWS_ACCESS_KEY_ID', 
