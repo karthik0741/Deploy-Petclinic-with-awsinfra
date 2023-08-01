@@ -2,9 +2,7 @@ pipeline {
     agent any
     stages {
         stage ('Initialize Terraform and validate') {
-            when {
-                branch 'new-branch'
-            }
+            when { anyOf {branch "new-branch";branch "main";changeRequest() } }
             steps {
                 withCredentials([[
                 $class: 'AmazonWebServicesCredentialsBinding', 
@@ -20,7 +18,25 @@ pipeline {
                 }
             }
             }
-        stage ('plan'){
+        stage ('Terraform plan & Action'){
+            when {
+                branch 'new-branch'
+            }
+            steps {
+                withCredentials([[
+                $class: 'AmazonWebServicesCredentialsBinding', 
+                accessKeyVariable: 'AWS_ACCESS_KEY_ID', 
+                secretKeyVariable: 'AWS_SECRET_ACCESS_KEY',
+                credentialsId: 'AWS_ACCOUNT'
+                ]]) {
+                dir('infra'){
+                sh 'terraform init'
+                sh 'terraform plan'
+                }
+                }
+            }
+        }        
+        stage ('Terraform plan & Action'){
             when {
                 branch 'main'
             }
@@ -34,6 +50,7 @@ pipeline {
                 dir('infra'){
                 sh 'terraform init'
                 sh 'terraform plan'
+                sh 'terraform ${action} --auto-approve'
                 }
                 }
             }
