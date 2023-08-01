@@ -32,7 +32,8 @@ pipeline {
                 credentialsId: 'AWS_ACCOUNT'
                 ]]) {
                 dir('infra'){
-               sh 'terraform plan'
+                sh 'terraform init'
+                sh 'terraform plan'
                 }
                 }
             }
