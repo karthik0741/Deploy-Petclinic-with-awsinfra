@@ -18,7 +18,7 @@ pipeline {
                 }
             }
             }
-        stage ('Terraform plan & Action'){
+        stage ('Terraform plan'){
             when {
                 branch 'new-branch'
             }
