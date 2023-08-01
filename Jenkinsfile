@@ -12,11 +12,11 @@ pipeline {
         branch 'new-branch'
       steps {
         withCredentials([[
-          $class: 'AmazonWebServicesCredentialsBinding', 
-          accessKeyVariable: 'AWS_ACCESS_KEY_ID', 
-        	secretKeyVariable: 'AWS_SECRET_ACCESS_KEY',
-		      credentialsId: 'AWS_ACCOUNT'
-		      ]]) {
+            $class: 'AmazonWebServicesCredentialsBinding', 
+            accessKeyVariable: 'AWS_ACCESS_KEY_ID', 
+            secretKeyVariable: 'AWS_SECRET_ACCESS_KEY',
+		    credentialsId: 'AWS_ACCOUNT'
+		    ]]) {
         dir('infra'){
           sh 'terraform init'
           sh 'terraform fmt'
@@ -30,11 +30,11 @@ pipeline {
         branch 'main'
       steps {
         withCredentials([[
-          $class: 'AmazonWebServicesCredentialsBinding', 
-          accessKeyVariable: 'AWS_ACCESS_KEY_ID', 
-        	secretKeyVariable: 'AWS_SECRET_ACCESS_KEY',
-		      credentialsId: 'AWS_ACCOUNT'
-			    ]]) {
+            $class: 'AmazonWebServicesCredentialsBinding', 
+            accessKeyVariable: 'AWS_ACCESS_KEY_ID', 
+            secretKeyVariable: 'AWS_SECRET_ACCESS_KEY',
+		    credentialsId: 'AWS_ACCOUNT'
+		    ]]) {
         dir('infra'){
           sh 'terraform plan'
         }
