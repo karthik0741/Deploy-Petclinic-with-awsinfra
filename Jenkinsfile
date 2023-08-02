@@ -1,5 +1,7 @@
 pipeline {
     agent any
+    parameters { 
+        choice(name: 'action', choices: ['apply', 'destory'], description: 'Perform Action')
     stages {
         stage ('Initialize Terraform and validate') {
             when { anyOf {branch "new-branch";branch "main";changeRequest() } }
