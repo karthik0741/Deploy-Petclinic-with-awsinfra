@@ -1,7 +1,7 @@
 pipeline {
     agent any
     parameters { 
-        choice(name: 'action', choices: ['apply', 'destory'], description: 'Perform Action')
+        choice(name: 'action', choices: ['apply', 'destroy'], description: 'Perform Action')
     }
     stages {
         stage ('Initialize Terraform and validate') {
