@@ -9,8 +9,11 @@ output "ec2" {
 }
 output "rds" {
     value = module.rds
-    sensitive = true
 }
 output "vpc" {
     value = module.vpc
+}
+output "rds" {
+    value = module.rds
+	sensitive = true
 }
