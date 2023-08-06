@@ -71,15 +71,14 @@ resource "aws_db_instance" "db_instance" {
   engine                  = "mysql"
   engine_version          = "8.0.31"
   multi_az                = false
-  identifier              = "petclinic"
+  identifier              = "rds-for-pet"
   username                = "petclinic"
   password                = "petclinic"
   instance_class          = "db.t2.micro"
   allocated_storage       = 20
-  publicly_accessible     = true
   db_subnet_group_name    = aws_db_subnet_group.database_subnet_group.name
   vpc_security_group_ids  = [aws_security_group.database_security_group.id]
   availability_zone       = data.aws_availability_zones.available_zones.names[0]
-  db_name                 = "petclinic"
+  db_name                 = "applicationdb"
   skip_final_snapshot     = true
 }
