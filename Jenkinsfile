@@ -4,7 +4,7 @@ pipeline {
         choice(name: 'action', choices: ['apply', 'destroy'], description: 'Perform Action')
     }
     stages {
-        stage ('Initialize Terraform and validate') {
+        stage ('Initialize Terraform and validate.') {
             when { anyOf {branch "new-branch";branch "main";changeRequest() } }
             steps {
                 withCredentials([[
