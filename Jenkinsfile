@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    parameters { 
-        choice(name: 'action', choices: ['apply', 'destroy'], description: 'Perform Action')
-    }
     stages {
         stage ('Initialize Terraform and validate.') {
             when { anyOf {branch "new-branch";branch "main";changeRequest() } }
@@ -53,7 +50,7 @@ pipeline {
                 dir('infra'){
                 sh 'terraform init'
                 sh 'terraform plan'
-                sh 'terraform ${action} --auto-approve'
+                sh 'terraform apply --auto-approve'
                 }
                 }
             }
