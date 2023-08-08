@@ -14,7 +14,7 @@ pipeline {
                 credentialsId: 'AWS_ACCOUNT'
                 ]]) {
                 dir('infra'){
-                sh 'terraform init'
+                sh 'terraform init -migrate-state'
                 sh 'terraform fmt'
                 sh 'terraform validate'
                 }
