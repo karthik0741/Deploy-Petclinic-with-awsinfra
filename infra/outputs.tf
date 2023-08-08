@@ -7,9 +7,6 @@ output "security_group" {
 output "ec2" {
     value = module.ec2
 }
-output "rds" {
-    value = module.rds
-}
 output "vpc" {
     value = module.vpc
 }
