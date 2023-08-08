@@ -27,7 +27,6 @@ resource "aws_launch_template" "ec2_asg" {
   lifecycle {
     create_before_destroy = true
   }
-  
 }
 
 
