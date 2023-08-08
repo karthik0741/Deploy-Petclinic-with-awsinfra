@@ -22,12 +22,11 @@ resource "aws_launch_template" "ec2_asg" {
   iam_instance_profile {
     name = var.iam_ec2_instance_profile.name
   }
-  user_data = filebase64("userdata.sh")
+  user_data = base64encode(templatefile(("userdata.sh"), {mysql_url = var.rds_db_endpoint}))
   vpc_security_group_ids = [var.alb_security_group_id]
   lifecycle {
     create_before_destroy = true
   }
-  
 }
 
 
