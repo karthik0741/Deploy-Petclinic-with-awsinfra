@@ -53,7 +53,7 @@ pipeline {
                 dir('infra'){
                 sh 'terraform init'
                 sh 'terraform plan'
-                sh 'terraform apply --auto-approve'
+                sh 'terraform ${action} --auto-approve'
                 }
                 }
             }
