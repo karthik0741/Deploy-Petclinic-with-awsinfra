@@ -2,7 +2,7 @@ pipeline {
     agent any
     stages {
         stage ('Initialize Terraform and validate.') {
-            when { anyOf {branch "new-branch";branch "main";changeRequest() } }
+            when { anyOf {branch "new-branch";changeRequest() } }
             steps {
                 withCredentials([[
                 $class: 'AmazonWebServicesCredentialsBinding', 
